@@ -1,0 +1,10 @@
+1. 分区
+1) last : 取最新分区
+2）-1 ： 取当前数据时间分区
+3）p_xxxx: 取特定分区, 多个分区逗号分隔
+
+2.多值特征统一用逗号进行分隔
+3.特征类型：category，numberic. 序列特征和多值特征的处理类似
+1) category特征的操作有：dummy（和top联合用，取topN，不保留分数, 使用opertaor标签设置）, identity（和top联合使用，取topN，保留分数，使用opertaor标签设置）, isencode
+2）numberic特征操作：离散化（使用discretize标签设置），dummy（不保留具体值，使用opertaor标签设置）, identity（保留具体值，使用opertaor标签设置）
+

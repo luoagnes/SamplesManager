@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feature_generator>
+    <task_id  name="task_1564371487182"></task_id>
+    <task_type  name="train"/>
+    <data_type name="item" />
+    <tdw>
+        <user  name=""/>
+        <passwd  name=""/>
+    </tdw>
+    <sample>
+        <labelrate name="3" />
+        <save_type>
+            <is_TFRecord>true</is_TFRecord>
+            <is_LibSVM>true</is_LibSVM>
+            <is_Text>true</is_Text>
+        </save_type>
+        <save_path>
+            <root_path name="hdfs://ss-teg-4-v2/user/datamining/agneswluo/3C/samples/isHuanji/boundarys" />
+        </save_path>
+    </sample>
+
+    <feature_collect> <!--特征数据-->
+        <feature_data  name="ur::toufang_spu_attr_feat_table" norm_name="" time="">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="toufang_spu_attr_feat_table"/>
+                <parts  name="last"/>
+            </input>
+            <id_conf  from_id="spu_id" to_id="spu_id" id_field="spu_id" join_field="spu_id"/>
+            <features>
+                <feature  feature_name="1_一级类目" feature_type="numeric" value_field="cate_name1" operator="identity" type="user_cnt_feats"/>
+                <feature  feature_name="1_二级类目" feature_type="numeric" value_field="cate_name2" operator="identity"  type="user_cnt_feats"/>
+                <feature  feature_name="1_三级类目" feature_type="numeric" value_field="cate_name3" operator="identity"  type="user_cnt_feats"/>
+                <feature  feature_name="1_四级类目" feature_type="category" value_field="cate_name4" operator="identity"  type="user_cnt_feats"/>
+                <feature  feature_name="1_适用季节" feature_type="numeric" value_field="season_feat_id" operator="dummy" discretize="equi_val" discretize_argv="10"  type="user_cnt_feats"/>
+                <feature  feature_name="1_适用性别" feature_type="category" value_field="sex_id" operator="identity"  type="user_cnt_feats" />
+                <feature  feature_name="1_适用人群" feature_type="category" value_field="user_group_feat_id" operator="identity"  type="user_cnt_feats" />
+                <feature  feature_name="1_行业经验1" feature_type="category" value_field="isMultiFunction" operator="identity"  type="user_cnt_feats" />
+                <feature  feature_name="1_行业经验2" feature_type="category" value_field="isMultiScence" operator="identity"  type="user_cnt_feats" />
+                <feature  feature_name="1_行业经验3" feature_type="category" value_field="isBigtoSmall" operator="identity"  type="user_cnt_feats" />
+                <feature  feature_name="1_行业经验4" feature_type="category" value_field="is_profession" operator="identity"  type="user_cnt_feats" />
+                <feature  feature_name="1_是否适合当前月份" feature_type="category" value_field="is_suitable" operator="identity"  type="user_cnt_feats" />
+            </features>
+        </feature_data>
+        <feature_data  name="ur::toufang_spuid_product_mapping_table">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="toufang_spuid_product_mapping_table"/>
+                <parts  name="last"/>
+            </input>
+            <id_conf  from_id="spu_id" to_id="spu_id" id_field="spu_id" join_field="spu_id"/>
+            <features>
+                <feature  feature_name="1_产品词" feature_type="category" value_field="product" operator="identity" type="user_base_feats"/>
+            </features>
+        </feature_data>
+        <feature_data  name="ur::toufang_spuid_brand_mapping_table">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="toufang_spuid_brand_mapping_table"/>
+                <parts  name="last"/>
+            </input>
+            <id_conf  from_id="spu_id" to_id="spu_id" id_field="spu_id" join_field="spu_id"/>
+            <features>
+                <feature  feature_name="1_品牌" feature_type="category" value_field="brandid" operator="identity" type="user_base_feats"/>
+            </features>
+        </feature_data>
+        <!--        <feature_data  name="ur::toufang_spuid_brand_sales_feats_table">-->
+        <!--            <input>-->
+        <!--                <type  name="tdw"/>-->
+        <!--                <db  name="ur"/>-->
+        <!--                <tbl  name="toufang_spuid_brand_sales_feats_table"/>-->
+        <!--                <parts  name="p_20210901"/>-->
+        <!--            </input>-->
+        <!--            <id_conf  from_id="spu_id" to_id="spu_id" id_field="item_id" join_field="spu_id"/>-->
+        <!--            <features>-->
+        <!--                <feature  feature_name="1_品牌月销量排名" feature_type="category" value_field="month_sales_row" operator="identity" type="user_base_feats"/>-->
+        <!--                <feature  feature_name="1_品牌周销量排名" feature_type="category" value_field="week_sales_row" operator="identity" type="user_base_feats"/>-->
+        <!--            </features>-->
+        <!--        </feature_data>-->
+        <!--        <feature_data  name="ur::toufang_spuid_product_sales_feats_table">-->
+        <!--            <input>-->
+        <!--                <type  name="tdw"/>-->
+        <!--                <db  name="ur"/>-->
+        <!--                <tbl  name="toufang_spuid_product_sales_feats_table"/>-->
+        <!--                <parts  name="p_20210901"/>-->
+        <!--            </input>-->
+        <!--            <id_conf  from_id="spu_id" to_id="spu_id" id_field="item_id" join_field="spu_id"/>-->
+        <!--            <features>-->
+        <!--                <feature  feature_name="1_产品词月销量排名" feature_type="category" value_field="month_sales_row" operator="identity" type="user_base_feats"/>-->
+        <!--                <feature  feature_name="1_产品词周销量排名" feature_type="category" value_field="week_sales_row" operator="identity" type="user_base_feats"/>-->
+        <!--            </features>-->
+        <!--        </feature_data>-->
+        <!--        <feature_data  name="ur::toufang_spuid_cate3_sales_feats_table">-->
+        <!--            <input>-->
+        <!--                <type  name="tdw"/>-->
+        <!--                <db  name="ur"/>-->
+        <!--                <tbl  name="toufang_spuid_cate3_sales_feats_table"/>-->
+        <!--                <parts  name="p_20210901"/>-->
+        <!--            </input>-->
+        <!--            <id_conf  from_id="spu_id" to_id="spu_id" id_field="item_id" join_field="spu_id"/>-->
+        <!--            <features>-->
+        <!--                <feature  feature_name="1_三级类目月销量排名" feature_type="category" value_field="month_sales_row" operator="identity" type="user_base_feats"/>-->
+        <!--                <feature  feature_name="1_三级类目周销量排名" feature_type="category" value_field="week_sales_row" operator="identity" type="user_base_feats"/>-->
+        <!--            </features>-->
+        <!--        </feature_data>-->
+        <!--        <feature_data  name="ur::toufang_spuid_cate4_sales_feats_table">-->
+        <!--            <input>-->
+        <!--                <type  name="tdw"/>-->
+        <!--                <db  name="ur"/>-->
+        <!--                <tbl  name="toufang_spuid_cate4_sales_feats_table"/>-->
+        <!--                <parts  name="p_20210901"/>-->
+        <!--            </input>-->
+        <!--            <id_conf  from_id="spu_id" to_id="spu_id" id_field="item_id" join_field="spu_id"/>-->
+        <!--            <features>-->
+        <!--                <feature  feature_name="1_四级类目月销量排名" feature_type="category" value_field="month_sales_row" operator="identity" type="user_base_feats"/>-->
+        <!--                <feature  feature_name="1_四级类目周销量排名" feature_type="category" value_field="week_sales_row" operator="identity" type="user_base_feats"/>-->
+        <!--            </features>-->
+        <!--        </feature_data>-->
+
+        <feature_data  name="ur::toufang_spuid_cate3_ad_feats_table">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="toufang_spuid_cate3_ad_feats_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="spu_id" to_id="spu_id" id_field="spu_id" join_field="spu_id"/>
+            <features>
+                <feature  feature_name="1_cate3最近1天的曝光量" feature_type="category" value_field="imp_cnt_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近3天的曝光量" feature_type="category" value_field="imp_cnt_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近7天的曝光量" feature_type="category" value_field="imp_cnt_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近1天的点击量" feature_type="category" value_field="clk_cnt_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近3天的点击量" feature_type="category" value_field="clk_cnt_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近7天的点击量" feature_type="category" value_field="clk_cnt_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近1天的转化量" feature_type="category" value_field="conv_cnt_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近3天的转化量" feature_type="category" value_field="conv_cnt_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近7天的转化量" feature_type="category" value_field="conv_cnt_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近1天的点击率" feature_type="category" value_field="ctr_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近3天的点击率" feature_type="category" value_field="ctr_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近7天的点击率" feature_type="category" value_field="ctr_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近1天的转化率" feature_type="category" value_field="cvr_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近3天的转化率" feature_type="category" value_field="cvr_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近7天的转化率" feature_type="category" value_field="cvr_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近3天的曝光数直线斜率" feature_type="category" value_field="imp_slope_a_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近7天的曝光数直线斜率" feature_type="category" value_field="imp_slope_a_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近30天的曝光数直线斜率" feature_type="category" value_field="imp_slope_a_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近3天的点击数直线斜率" feature_type="category" value_field="clk_slope_a_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近7天的点击数直线斜率" feature_type="category" value_field="clk_slope_a_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近30天的点击数直线斜率" feature_type="category" value_field="clk_slope_a_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近3天的转化数直线斜率" feature_type="category" value_field="conv_slope_a_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近7天的转化数直线斜率" feature_type="category" value_field="conv_slope_a_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近30天的转化数直线斜率" feature_type="category" value_field="conv_slope_a_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近3天的曝光数直线截距" feature_type="category" value_field="imp_slope_b_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近7天的曝光数直线截距" feature_type="category" value_field="imp_slope_b_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近30天的曝光数直线截距" feature_type="category" value_field="imp_slope_b_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近3天的点击数直线截距" feature_type="category" value_field="clk_slope_b_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近7天的点击数直线截距" feature_type="category" value_field="clk_slope_b_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近30天的点击数直线截距" feature_type="category" value_field="clk_slope_b_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近3天的转化数直线截距" feature_type="category" value_field="conv_slope_b_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近7天的转化数直线截距" feature_type="category" value_field="conv_slope_b_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近30天的转化数直线截距" feature_type="category" value_field="conv_slope_b_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近3天的曝光数在cate1下的tgi" feature_type="category" value_field="imp_cate1_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近7天的曝光数在cate1下的tgi" feature_type="category" value_field="imp_cate1_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近30天的曝光数在cate1下的tgi" feature_type="category" value_field="imp_cate1_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近3天的点击数在cate1下的tgi" feature_type="category" value_field="clk_cate1_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近7天的点击数在cate1下的tgi" feature_type="category" value_field="clk_cate1_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近30天的点击数在cate1下的tgi" feature_type="category" value_field="clk_cate1_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近3天的转化数在cate1下的tgi" feature_type="category" value_field="conv_cate1_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近7天的转化数在cate1下的tgi" feature_type="category" value_field="conv_cate1_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近30天的转化数在cate1下的tgi" feature_type="category" value_field="conv_cate1_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近3天的曝光数在cate2下的tgi" feature_type="category" value_field="imp_cate2_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近7天的曝光数在cate2下的tgi" feature_type="category" value_field="imp_cate2_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近30天的曝光数在cate2下的tgi" feature_type="category" value_field="imp_cate2_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近3天的点击数在cate2下的tgi" feature_type="category" value_field="clk_cate2_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近7天的点击数在cate2下的tgi" feature_type="category" value_field="clk_cate2_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近30天的点击数在cate2下的tgi" feature_type="category" value_field="clk_cate2_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近3天的转化数在cate2下的tgi" feature_type="category" value_field="conv_cate2_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近7天的转化数在cate2下的tgi" feature_type="category" value_field="conv_cate2_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3最近30天的转化数在cate2下的tgi" feature_type="category" value_field="conv_cate2_tgi_30_day" operator="identity" type="user_base_feats"/>
+            </features>
+        </feature_data>
+
+        <feature_data  name="ur::toufang_spuid_cate4_ad_feats_table">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="toufang_spuid_cate4_ad_feats_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="spu_id" to_id="spu_id" id_field="spu_id" join_field="spu_id"/>
+            <features>
+                <feature  feature_name="1_cate4最近1天的曝光量" feature_type="category" value_field="imp_cnt_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近3天的曝光量" feature_type="category" value_field="imp_cnt_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近7天的曝光量" feature_type="category" value_field="imp_cnt_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近1天的点击量" feature_type="category" value_field="clk_cnt_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近3天的点击量" feature_type="category" value_field="clk_cnt_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近7天的点击量" feature_type="category" value_field="clk_cnt_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近1天的转化量" feature_type="category" value_field="conv_cnt_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近3天的转化量" feature_type="category" value_field="conv_cnt_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近7天的转化量" feature_type="category" value_field="conv_cnt_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近1天的点击率" feature_type="category" value_field="ctr_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近3天的点击率" feature_type="category" value_field="ctr_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近7天的点击率" feature_type="category" value_field="ctr_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近1天的转化率" feature_type="category" value_field="cvr_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近3天的转化率" feature_type="category" value_field="cvr_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近7天的转化率" feature_type="category" value_field="cvr_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近3天的曝光数直线斜率" feature_type="category" value_field="imp_slope_a_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近7天的曝光数直线斜率" feature_type="category" value_field="imp_slope_a_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近30天的曝光数直线斜率" feature_type="category" value_field="imp_slope_a_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近3天的点击数直线斜率" feature_type="category" value_field="clk_slope_a_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近7天的点击数直线斜率" feature_type="category" value_field="clk_slope_a_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近30天的点击数直线斜率" feature_type="category" value_field="clk_slope_a_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近3天的转化数直线斜率" feature_type="category" value_field="conv_slope_a_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近7天的转化数直线斜率" feature_type="category" value_field="conv_slope_a_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近30天的转化数直线斜率" feature_type="category" value_field="conv_slope_a_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近3天的曝光数直线截距" feature_type="category" value_field="imp_slope_b_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近7天的曝光数直线截距" feature_type="category" value_field="imp_slope_b_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近30天的曝光数直线截距" feature_type="category" value_field="imp_slope_b_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近3天的点击数直线截距" feature_type="category" value_field="clk_slope_b_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近7天的点击数直线截距" feature_type="category" value_field="clk_slope_b_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近30天的点击数直线截距" feature_type="category" value_field="clk_slope_b_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近3天的转化数直线截距" feature_type="category" value_field="conv_slope_b_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近7天的转化数直线截距" feature_type="category" value_field="conv_slope_b_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近30天的转化数直线截距" feature_type="category" value_field="conv_slope_b_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近3天的曝光数在cate1下的tgi" feature_type="category" value_field="imp_cate1_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近7天的曝光数在cate1下的tgi" feature_type="category" value_field="imp_cate1_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近30天的曝光数在cate1下的tgi" feature_type="category" value_field="imp_cate1_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近3天的点击数在cate1下的tgi" feature_type="category" value_field="clk_cate1_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近7天的点击数在cate1下的tgi" feature_type="category" value_field="clk_cate1_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近30天的点击数在cate1下的tgi" feature_type="category" value_field="clk_cate1_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近3天的转化数在cate1下的tgi" feature_type="category" value_field="conv_cate1_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近7天的转化数在cate1下的tgi" feature_type="category" value_field="conv_cate1_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近30天的转化数在cate1下的tgi" feature_type="category" value_field="conv_cate1_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近3天的曝光数在cate2下的tgi" feature_type="category" value_field="imp_cate2_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近7天的曝光数在cate2下的tgi" feature_type="category" value_field="imp_cate2_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近30天的曝光数在cate2下的tgi" feature_type="category" value_field="imp_cate2_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近3天的点击数在cate2下的tgi" feature_type="category" value_field="clk_cate2_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近7天的点击数在cate2下的tgi" feature_type="category" value_field="clk_cate2_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近30天的点击数在cate2下的tgi" feature_type="category" value_field="clk_cate2_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近3天的转化数在cate2下的tgi" feature_type="category" value_field="conv_cate2_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近7天的转化数在cate2下的tgi" feature_type="category" value_field="conv_cate2_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4最近30天的转化数在cate2下的tgi" feature_type="category" value_field="conv_cate2_tgi_30_day" operator="identity" type="user_base_feats"/>
+            </features>
+        </feature_data>
+        <feature_data  name="ur::toufang_spuid_product_ad_feats_table">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="toufang_spuid_product_ad_feats_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="spu_id" to_id="spu_id" id_field="spu_id" join_field="spu_id"/>
+            <features>
+                <feature  feature_name="1_product最近1天的曝光量" feature_type="category" value_field="imp_cnt_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近3天的曝光量" feature_type="category" value_field="imp_cnt_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近7天的曝光量" feature_type="category" value_field="imp_cnt_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近1天的点击量" feature_type="category" value_field="clk_cnt_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近3天的点击量" feature_type="category" value_field="clk_cnt_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近7天的点击量" feature_type="category" value_field="clk_cnt_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近1天的转化量" feature_type="category" value_field="conv_cnt_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近3天的转化量" feature_type="category" value_field="conv_cnt_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近7天的转化量" feature_type="category" value_field="conv_cnt_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近1天的点击率" feature_type="category" value_field="ctr_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近3天的点击率" feature_type="category" value_field="ctr_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近7天的点击率" feature_type="category" value_field="ctr_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近1天的转化率" feature_type="category" value_field="cvr_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近3天的转化率" feature_type="category" value_field="cvr_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近7天的转化率" feature_type="category" value_field="cvr_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近3天的曝光数直线斜率" feature_type="category" value_field="imp_slope_a_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近7天的曝光数直线斜率" feature_type="category" value_field="imp_slope_a_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近30天的曝光数直线斜率" feature_type="category" value_field="imp_slope_a_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近3天的点击数直线斜率" feature_type="category" value_field="clk_slope_a_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近7天的点击数直线斜率" feature_type="category" value_field="clk_slope_a_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近30天的点击数直线斜率" feature_type="category" value_field="clk_slope_a_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近3天的转化数直线斜率" feature_type="category" value_field="conv_slope_a_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近7天的转化数直线斜率" feature_type="category" value_field="conv_slope_a_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近30天的转化数直线斜率" feature_type="category" value_field="conv_slope_a_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近3天的曝光数直线截距" feature_type="category" value_field="imp_slope_b_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近7天的曝光数直线截距" feature_type="category" value_field="imp_slope_b_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近30天的曝光数直线截距" feature_type="category" value_field="imp_slope_b_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近3天的点击数直线截距" feature_type="category" value_field="clk_slope_b_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近7天的点击数直线截距" feature_type="category" value_field="clk_slope_b_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近30天的点击数直线截距" feature_type="category" value_field="clk_slope_b_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近3天的转化数直线截距" feature_type="category" value_field="conv_slope_b_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近7天的转化数直线截距" feature_type="category" value_field="conv_slope_b_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近30天的转化数直线截距" feature_type="category" value_field="conv_slope_b_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近3天的曝光数在cate1下的tgi" feature_type="category" value_field="imp_cate1_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近7天的曝光数在cate1下的tgi" feature_type="category" value_field="imp_cate1_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近30天的曝光数在cate1下的tgi" feature_type="category" value_field="imp_cate1_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近3天的点击数在cate1下的tgi" feature_type="category" value_field="clk_cate1_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近7天的点击数在cate1下的tgi" feature_type="category" value_field="clk_cate1_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近30天的点击数在cate1下的tgi" feature_type="category" value_field="clk_cate1_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近3天的转化数在cate1下的tgi" feature_type="category" value_field="conv_cate1_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近7天的转化数在cate1下的tgi" feature_type="category" value_field="conv_cate1_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近30天的转化数在cate1下的tgi" feature_type="category" value_field="conv_cate1_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近3天的曝光数在cate2下的tgi" feature_type="category" value_field="imp_cate2_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近7天的曝光数在cate2下的tgi" feature_type="category" value_field="imp_cate2_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近30天的曝光数在cate2下的tgi" feature_type="category" value_field="imp_cate2_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近3天的点击数在cate2下的tgi" feature_type="category" value_field="clk_cate2_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近7天的点击数在cate2下的tgi" feature_type="category" value_field="clk_cate2_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近30天的点击数在cate2下的tgi" feature_type="category" value_field="clk_cate2_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近3天的转化数在cate2下的tgi" feature_type="category" value_field="conv_cate2_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近7天的转化数在cate2下的tgi" feature_type="category" value_field="conv_cate2_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_product最近30天的转化数在cate2下的tgi" feature_type="category" value_field="conv_cate2_tgi_30_day" operator="identity" type="user_base_feats"/>
+            </features>
+        </feature_data>
+        <feature_data  name="ur::toufang_spuid_brand_ad_feats_table">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="toufang_spuid_brand_ad_feats_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="spu_id" to_id="spu_id" id_field="spu_id" join_field="spu_id"/>
+            <features>
+                <feature  feature_name="1_brand最近1天的曝光量" feature_type="category" value_field="imp_cnt_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近3天的曝光量" feature_type="category" value_field="imp_cnt_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近7天的曝光量" feature_type="category" value_field="imp_cnt_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近1天的点击量" feature_type="category" value_field="clk_cnt_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近3天的点击量" feature_type="category" value_field="clk_cnt_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近7天的点击量" feature_type="category" value_field="clk_cnt_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近1天的转化量" feature_type="category" value_field="conv_cnt_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近3天的转化量" feature_type="category" value_field="conv_cnt_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近7天的转化量" feature_type="category" value_field="conv_cnt_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近1天的点击率" feature_type="category" value_field="ctr_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近3天的点击率" feature_type="category" value_field="ctr_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近7天的点击率" feature_type="category" value_field="ctr_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近1天的转化率" feature_type="category" value_field="cvr_1_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近3天的转化率" feature_type="category" value_field="cvr_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近7天的转化率" feature_type="category" value_field="cvr_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近3天的曝光数直线斜率" feature_type="category" value_field="imp_slope_a_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近7天的曝光数直线斜率" feature_type="category" value_field="imp_slope_a_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近30天的曝光数直线斜率" feature_type="category" value_field="imp_slope_a_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近3天的点击数直线斜率" feature_type="category" value_field="clk_slope_a_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近7天的点击数直线斜率" feature_type="category" value_field="clk_slope_a_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近30天的点击数直线斜率" feature_type="category" value_field="clk_slope_a_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近3天的转化数直线斜率" feature_type="category" value_field="conv_slope_a_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近7天的转化数直线斜率" feature_type="category" value_field="conv_slope_a_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近30天的转化数直线斜率" feature_type="category" value_field="conv_slope_a_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近3天的曝光数直线截距" feature_type="category" value_field="imp_slope_b_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近7天的曝光数直线截距" feature_type="category" value_field="imp_slope_b_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近30天的曝光数直线截距" feature_type="category" value_field="imp_slope_b_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近3天的点击数直线截距" feature_type="category" value_field="clk_slope_b_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近7天的点击数直线截距" feature_type="category" value_field="clk_slope_b_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近30天的点击数直线截距" feature_type="category" value_field="clk_slope_b_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近3天的转化数直线截距" feature_type="category" value_field="conv_slope_b_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近7天的转化数直线截距" feature_type="category" value_field="conv_slope_b_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近30天的转化数直线截距" feature_type="category" value_field="conv_slope_b_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近3天的曝光数在cate1下的tgi" feature_type="category" value_field="imp_cate1_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近7天的曝光数在cate1下的tgi" feature_type="category" value_field="imp_cate1_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近30天的曝光数在cate1下的tgi" feature_type="category" value_field="imp_cate1_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近3天的点击数在cate1下的tgi" feature_type="category" value_field="clk_cate1_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近7天的点击数在cate1下的tgi" feature_type="category" value_field="clk_cate1_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近30天的点击数在cate1下的tgi" feature_type="category" value_field="clk_cate1_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近3天的转化数在cate1下的tgi" feature_type="category" value_field="conv_cate1_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近7天的转化数在cate1下的tgi" feature_type="category" value_field="conv_cate1_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近30天的转化数在cate1下的tgi" feature_type="category" value_field="conv_cate1_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近3天的曝光数在cate2下的tgi" feature_type="category" value_field="imp_cate2_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近7天的曝光数在cate2下的tgi" feature_type="category" value_field="imp_cate2_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近30天的曝光数在cate2下的tgi" feature_type="category" value_field="imp_cate2_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近3天的点击数在cate2下的tgi" feature_type="category" value_field="clk_cate2_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近7天的点击数在cate2下的tgi" feature_type="category" value_field="clk_cate2_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近30天的点击数在cate2下的tgi" feature_type="category" value_field="clk_cate2_tgi_30_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近3天的转化数在cate2下的tgi" feature_type="category" value_field="conv_cate2_tgi_3_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近7天的转化数在cate2下的tgi" feature_type="category" value_field="conv_cate2_tgi_7_day" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brand最近30天的转化数在cate2下的tgi" feature_type="category" value_field="conv_cate2_tgi_30_day" operator="identity" type="user_base_feats"/>
+            </features>
+        </feature_data>
+
+        <feature_data  name="ur::toufang_cate3_hot_feats_on_reading_daily_table">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="toufang_cate3_hot_feats_on_reading_daily_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="spu_id" to_id="spu_id" id_field="spu_id" join_field="spu_id"/>
+            <features>
+                <feature  feature_name="1_cate3read最近3天用户数排名" feature_type="category" value_field="d3_user_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3read最近7天用户数直线斜率" feature_type="category" value_field="d7_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3read最近7天用户数直线截距" feature_type="category" value_field="d7_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3read最近7天用户数直线斜率排名" feature_type="category" value_field="d7_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3read最近7天用户数排名" feature_type="category" value_field="d7_user_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3read最近15天用户数直线斜率" feature_type="category" value_field="d15_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3read最近15天用户数直线截距" feature_type="category" value_field="d15_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3read最近15天用户数排名" feature_type="category" value_field="d15_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3read最近30天用户数直线斜率" feature_type="category" value_field="d30_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3read最近30天用户数直线截距" feature_type="category" value_field="d30_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3read最近30天用户数直线斜率排名" feature_type="category" value_field="d30_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3read最近30天用户数排名" feature_type="category" value_field="d30_user_row" operator="identity" type="user_base_feats"/>
+            </features>
+        </feature_data>
+        <feature_data  name="ur::toufang_cate4_hot_feats_on_reading_daily_table">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="toufang_cate4_hot_feats_on_reading_daily_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="spu_id" to_id="spu_id" id_field="spu_id" join_field="spu_id"/>
+            <features>
+                <feature  feature_name="1_cate4read最近3天用户数排名" feature_type="category" value_field="d3_user_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4read最近7天用户数直线斜率" feature_type="category" value_field="d7_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4read最近7天用户数直线截距" feature_type="category" value_field="d7_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4read最近7天用户数直线斜率排名" feature_type="category" value_field="d7_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4read最近7天用户数排名" feature_type="category" value_field="d7_user_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4read最近15天用户数直线斜率" feature_type="category" value_field="d15_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4read最近15天用户数直线截距" feature_type="category" value_field="d15_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4read最近15天用户数排名" feature_type="category" value_field="d15_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4read最近30天用户数直线斜率" feature_type="category" value_field="d30_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4read最近30天用户数直线截距" feature_type="category" value_field="d30_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4read最近30天用户数直线斜率排名" feature_type="category" value_field="d30_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4read最近30天用户数排名" feature_type="category" value_field="d30_user_row" operator="identity" type="user_base_feats"/>
+            </features>
+        </feature_data>
+        <feature_data  name="ur::toufang_product_hot_feats_on_reading_daily_table">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="toufang_product_hot_feats_on_reading_daily_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="spu_id" to_id="spu_id" id_field="spu_id" join_field="spu_id"/>
+            <features>
+                <feature  feature_name="1_productread最近3天用户数排名" feature_type="category" value_field="d3_user_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productread最近7天用户数直线斜率" feature_type="category" value_field="d7_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productread最近7天用户数直线截距" feature_type="category" value_field="d7_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productread最近7天用户数直线斜率排名" feature_type="category" value_field="d7_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productread最近7天用户数排名" feature_type="category" value_field="d7_user_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productread最近15天用户数直线斜率" feature_type="category" value_field="d15_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productread最近15天用户数直线截距" feature_type="category" value_field="d15_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productread最近15天用户数排名" feature_type="category" value_field="d15_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productread最近30天用户数直线斜率" feature_type="category" value_field="d30_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productread最近30天用户数直线截距" feature_type="category" value_field="d30_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productread最近30天用户数直线斜率排名" feature_type="category" value_field="d30_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productread最近30天用户数排名" feature_type="category" value_field="d30_user_row" operator="identity" type="user_base_feats"/>
+            </features>
+        </feature_data>
+        <feature_data  name="ur::toufang_brand_hot_feats_on_reading_daily_table">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="toufang_brand_hot_feats_on_reading_daily_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="spu_id" to_id="spu_id" id_field="spu_id" join_field="spu_id"/>
+            <features>
+                <feature  feature_name="1_brandread最近3天用户数排名" feature_type="category" value_field="d3_user_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandread最近7天用户数直线斜率" feature_type="category" value_field="d7_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandread最近7天用户数直线截距" feature_type="category" value_field="d7_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandread最近7天用户数直线斜率排名" feature_type="category" value_field="d7_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandread最近7天用户数排名" feature_type="category" value_field="d7_user_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandread最近15天用户数直线斜率" feature_type="category" value_field="d15_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandread最近15天用户数直线截距" feature_type="category" value_field="d15_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandread最近15天用户数排名" feature_type="category" value_field="d15_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandread最近30天用户数直线斜率" feature_type="category" value_field="d30_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandread最近30天用户数直线截距" feature_type="category" value_field="d30_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandread最近30天用户数直线斜率排名" feature_type="category" value_field="d30_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandread最近30天用户数排名" feature_type="category" value_field="d30_user_row" operator="identity" type="user_base_feats"/>
+            </features>
+        </feature_data>
+
+
+        <feature_data  name="ur::toufang_cate3_hot_feats_on_search_daily_table">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="toufang_cate3_hot_feats_on_search_daily_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="spu_id" to_id="spu_id" id_field="spu_id" join_field="spu_id"/>
+            <features>
+                <feature  feature_name="1_cate3search最近3天用户数排名" feature_type="category" value_field="d3_user_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3search最近7天用户数直线斜率" feature_type="category" value_field="d7_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3search最近7天用户数直线截距" feature_type="category" value_field="d7_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3search最近7天用户数直线斜率排名" feature_type="category" value_field="d7_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3search最近7天用户数排名" feature_type="category" value_field="d7_user_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3search最近15天用户数直线斜率" feature_type="category" value_field="d15_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3search最近15天用户数直线截距" feature_type="category" value_field="d15_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3search最近15天用户数排名" feature_type="category" value_field="d15_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3search最近30天用户数直线斜率" feature_type="category" value_field="d30_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3search最近30天用户数直线截距" feature_type="category" value_field="d30_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3search最近30天用户数直线斜率排名" feature_type="category" value_field="d30_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate3search最近30天用户数排名" feature_type="category" value_field="d30_user_row" operator="identity" type="user_base_feats"/>
+            </features>
+        </feature_data>
+        <feature_data  name="ur::toufang_cate4_hot_feats_on_search_daily_table">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="toufang_cate4_hot_feats_on_search_daily_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="spu_id" to_id="spu_id" id_field="spu_id" join_field="spu_id"/>
+            <features>
+                <feature  feature_name="1_cate4search最近3天用户数排名" feature_type="category" value_field="d3_user_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4search最近7天用户数直线斜率" feature_type="category" value_field="d7_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4search最近7天用户数直线截距" feature_type="category" value_field="d7_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4search最近7天用户数直线斜率排名" feature_type="category" value_field="d7_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4search最近7天用户数排名" feature_type="category" value_field="d7_user_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4search最近15天用户数直线斜率" feature_type="category" value_field="d15_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4search最近15天用户数直线截距" feature_type="category" value_field="d15_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4search最近15天用户数排名" feature_type="category" value_field="d15_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4search最近30天用户数直线斜率" feature_type="category" value_field="d30_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4search最近30天用户数直线截距" feature_type="category" value_field="d30_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4search最近30天用户数直线斜率排名" feature_type="category" value_field="d30_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_cate4search最近30天用户数排名" feature_type="category" value_field="d30_user_row" operator="identity" type="user_base_feats"/>
+            </features>
+        </feature_data>
+        <feature_data  name="ur::toufang_product_hot_feats_on_search_daily_table">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="toufang_product_hot_feats_on_search_daily_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="spu_id" to_id="spu_id" id_field="spu_id" join_field="spu_id"/>
+            <features>
+                <feature  feature_name="1_productsearch最近3天用户数排名" feature_type="category" value_field="d3_user_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productsearch最近7天用户数直线斜率" feature_type="category" value_field="d7_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productsearch最近7天用户数直线截距" feature_type="category" value_field="d7_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productsearch最近7天用户数直线斜率排名" feature_type="category" value_field="d7_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productsearch最近7天用户数排名" feature_type="category" value_field="d7_user_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productsearch最近15天用户数直线斜率" feature_type="category" value_field="d15_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productsearch最近15天用户数直线截距" feature_type="category" value_field="d15_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productsearch最近15天用户数排名" feature_type="category" value_field="d15_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productsearch最近30天用户数直线斜率" feature_type="category" value_field="d30_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productsearch最近30天用户数直线截距" feature_type="category" value_field="d30_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productsearch最近30天用户数直线斜率排名" feature_type="category" value_field="d30_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_productsearch最近30天用户数排名" feature_type="category" value_field="d30_user_row" operator="identity" type="user_base_feats"/>
+            </features>
+        </feature_data>
+        <feature_data  name="ur::toufang_brand_hot_feats_on_search_daily_table">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="toufang_brand_hot_feats_on_search_daily_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="spu_id" to_id="spu_id" id_field="spu_id" join_field="spu_id"/>
+            <features>
+                <feature  feature_name="1_brandsearch最近3天用户数排名" feature_type="category" value_field="d3_user_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandsearch最近7天用户数直线斜率" feature_type="category" value_field="d7_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandsearch最近7天用户数直线截距" feature_type="category" value_field="d7_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandsearch最近7天用户数直线斜率排名" feature_type="category" value_field="d7_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandsearch最近7天用户数排名" feature_type="category" value_field="d7_user_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandsearch最近15天用户数直线斜率" feature_type="category" value_field="d15_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandsearch最近15天用户数直线截距" feature_type="category" value_field="d15_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandsearch最近15天用户数排名" feature_type="category" value_field="d15_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandsearch最近30天用户数直线斜率" feature_type="category" value_field="d30_user_num_slope_a" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandsearch最近30天用户数直线截距" feature_type="category" value_field="d30_user_num_slope_b" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandsearch最近30天用户数直线斜率排名" feature_type="category" value_field="d30_user_num_slope_a_row" operator="identity" type="user_base_feats"/>
+                <feature  feature_name="1_brandsearch最近30天用户数排名" feature_type="category" value_field="d30_user_row" operator="identity" type="user_base_feats"/>
+            </features>
+        </feature_data>
+    </feature_collect>
+</feature_generator>

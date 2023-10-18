@@ -1,0 +1,32 @@
+<job name="ad_industry_suport" id="123">
+    <pipeline id="123456">
+        <node id="12" name="loader" processor="com.tencent.openrc.application.loader.TdwLoader">
+            <properties>
+                <property key="tdw_table" value="ur::t_ecom_underlying_asset_profile_mid_3day_sample_v1"/>
+                <property key="tdw_username" value="tdw_haoxiliu"/>
+                <property key="tdw_userpassword" value="tdw_haoxiliu"/>
+                <property key="partition_num" value="16"/>
+                <property key="source" value="normal"/>
+            </properties>
+        </node>
+        <node id="13" name="transformer2" processor="com.tencent.openrc.application.transform.DataFrameSqlTransform" >
+            <dependency>
+                <node id="12"/>
+            </dependency>
+            <properties>
+                <property key="sql" value="select wuid, tags as tag from tmp_table" />
+            </properties>
+        </node>
+        <node id="14" name="transformer3" processor="com.tencent.openrc.application.transform.GeneralPreTrainDataTransform" >
+            <properties>
+                <property key="source" value="preSample"/>
+                <property key="outputPath" value="hdfs://ss-teg-4-v2/user/datamining/zebodong/ad/pretrain/multi_task/data/oneside_adx" />
+                <property key="label_num" value="6" />
+                <property key="label_idx" value="2" />
+            </properties>
+            <dependency>
+                <node id="13"/>
+            </dependency>
+        </node>
+    </pipeline>
+</job>

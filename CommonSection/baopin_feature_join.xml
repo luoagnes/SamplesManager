@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feature_generator>
+    <task_id  name="task_1564371487182"></task_id>
+    <task_type  name="train"/>
+    <tdw>
+        <user  name=""/>
+        <passwd  name=""/>
+    </tdw>
+    <sample>
+        <labelrate name="3" />
+        <split>
+            <train name="1" />
+            <val name="0.25" />
+            <test name="0.25" />
+        </split>
+        <save_type>
+            <is_TFRecord>true</is_TFRecord>
+            <is_LibSVM>true</is_LibSVM>
+            <is_Text>true</is_Text>
+        </save_type>
+        <save_path>
+            <root_path name="hdfs://ss-teg-4-v2/user/datamining/agneswluo/AMS/Experiemnt/brand/" />
+        </save_path>
+    </sample>
+    <action_data>
+        <input>
+            <type  name="tdw"/>
+            <db  name="ur"/>
+            <tbl  name="dvl_order_will_month_label_table"/>
+            <parts  name="-1"/>
+        </input>
+        <label_name  name="conv_num"/>
+        <ids>
+            <id  name="cate_name3_join"/>
+            <id  name="cate_name4_join"/>
+            <id  name="cate_brand"/>
+            <id  name="cate_product"/>
+            <id  name="cate_name3"/>
+            <id  name="cate_name4"/>
+            <id  name="brandid"/>
+            <id  name="cate2_brand"/>
+            <id  name="cate2_product"/>
+            <id  name="cate1_brandid"/>
+            <id  name="cate2_brandid"/>
+        </ids>
+        <contenxt_features>
+            <feature  feature_name="1_currMonth" feature_type="category" value_field="currMonth" isencode="0" />
+            <feature  feature_name="1_xuntype" feature_type="category" value_field="xuntype" isencode="0" />
+            <feature  feature_name="1_product" feature_type="category" value_field="product" isencode="1" />
+            <feature  feature_name="1_brandid" feature_type="category" value_field="brandid" isencode="1" />
+            <feature  feature_name="1_cate1" feature_type="category" value_field="cate_name1" isencode="1" />
+            <feature  feature_name="1_cate2" feature_type="category" value_field="cate_name2" isencode="1" />
+            <feature  feature_name="1_cate3" feature_type="category" value_field="cate_name3" isencode="1" />
+            <feature  feature_name="1_cate4" feature_type="category" value_field="cate_name4" isencode="1" />
+        </contenxt_features>
+    </action_data>
+
+    <feature_collect> <!--特征数据-->
+        <feature_data  name="ur::all_dimen_product_ad_feats_table" norm_name="" time="">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="all_dimen_product_ad_feats_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="cate_product" to_id="cate_product" id_field="dimen" join_field="cate_product"/>
+            <features>
+                <feature  feature_name="1_product_imp_cnt_1_day" feature_type="numeric" value_field="imp_cnt_1_day" />
+                <feature  feature_name="1_product_imp_cnt_3_day" feature_type="numeric" value_field="imp_cnt_3_day" />
+                <feature  feature_name="1_product_imp_cnt_7_day" feature_type="numeric" value_field="imp_cnt_7_day" />
+                <feature  feature_name="1_product_clk_cnt_1_day" feature_type="numeric" value_field="clk_cnt_1_day" />
+                <feature  feature_name="1_product_clk_cnt_3_day" feature_type="numeric" value_field="clk_cnt_3_day" />
+                <feature  feature_name="1_product_clk_cnt_7_day" feature_type="numeric" value_field="clk_cnt_7_day" />
+                <feature  feature_name="1_product_conv_cnt_1_day" feature_type="numeric" value_field="conv_cnt_1_day" />
+                <feature  feature_name="1_product_conv_cnt_3_day" feature_type="numeric" value_field="conv_cnt_3_day" />
+                <feature  feature_name="1_product_conv_cnt_7_day" feature_type="numeric" value_field="conv_cnt_7_day" />
+                <feature  feature_name="1_product_ctr_1_day" feature_type="numeric" value_field="ctr_1_day" />
+                <feature  feature_name="1_product_ctr_3_day" feature_type="numeric" value_field="ctr_3_day" />
+                <feature  feature_name="1_product_ctr_7_day" feature_type="numeric" value_field="ctr_7_day" />
+                <feature  feature_name="1_product_cvr_1_day" feature_type="numeric" value_field="cvr_1_day" />
+                <feature  feature_name="1_product_cvr_3_day" feature_type="numeric" value_field="cvr_3_day" />
+                <feature  feature_name="1_product_cvr_7_day" feature_type="numeric" value_field="cvr_7_day" />
+                <feature  feature_name="1_product_imp_slope_a_3_day" feature_type="numeric" value_field="imp_slope_a_3_day" />
+                <feature  feature_name="1_product_imp_slope_a_7_day" feature_type="numeric" value_field="imp_slope_a_7_day" />
+                <feature  feature_name="1_product_imp_slope_a_30_day" feature_type="numeric" value_field="imp_slope_a_30_day" />
+                <feature  feature_name="1_product_clk_slope_a_3_day" feature_type="numeric" value_field="clk_slope_a_3_day" />
+                <feature  feature_name="1_product_clk_slope_a_7_day" feature_type="numeric" value_field="clk_slope_a_7_day" />
+                <feature  feature_name="1_product_clk_slope_a_30_day" feature_type="numeric" value_field="clk_slope_a_30_day" />
+                <feature  feature_name="1_product_conv_slope_a_3_day" feature_type="numeric" value_field="conv_slope_a_3_day" />
+                <feature  feature_name="1_product_conv_slope_a_7_day" feature_type="numeric" value_field="conv_slope_a_7_day" />
+                <feature  feature_name="1_product_conv_slope_a_30_day" feature_type="numeric" value_field="conv_slope_a_30_day" />
+                <feature  feature_name="1_product_imp_slope_b_3_day" feature_type="numeric" value_field="imp_slope_b_3_day" />
+                <feature  feature_name="1_product_imp_slope_b_7_day" feature_type="numeric" value_field="imp_slope_b_7_day" />
+                <feature  feature_name="1_product_imp_slope_b_30_day" feature_type="numeric" value_field="imp_slope_b_30_day" />
+                <feature  feature_name="1_product_clk_slope_b_3_day" feature_type="numeric" value_field="clk_slope_b_3_day" />
+                <feature  feature_name="1_product_clk_slope_b_7_day" feature_type="numeric" value_field="clk_slope_b_7_day" />
+                <feature  feature_name="1_product_clk_slope_b_30_day" feature_type="numeric" value_field="clk_slope_b_30_day" />
+                <feature  feature_name="1_product_conv_slope_b_3_day" feature_type="numeric" value_field="conv_slope_b_3_day" />
+                <feature  feature_name="1_product_conv_slope_b_7_day" feature_type="numeric" value_field="conv_slope_b_7_day" />
+                <feature  feature_name="1_product_conv_slope_b_30_day" feature_type="numeric" value_field="conv_slope_b_30_day" />
+                <feature  feature_name="1_product_imp_cate1_tgi_3_day" feature_type="numeric" value_field="imp_cate1_tgi_3_day" />
+                <feature  feature_name="1_product_imp_cate1_tgi_7_day" feature_type="numeric" value_field="imp_cate1_tgi_7_day" />
+                <feature  feature_name="1_product_imp_cate1_tgi_30_day" feature_type="numeric" value_field="imp_cate1_tgi_30_day" />
+                <feature  feature_name="1_product_clk_cate1_tgi_3_day" feature_type="numeric" value_field="clk_cate1_tgi_3_day" />
+                <feature  feature_name="1_product_clk_cate1_tgi_7_day" feature_type="numeric" value_field="clk_cate1_tgi_7_day" />
+                <feature  feature_name="1_product_clk_cate1_tgi_30_day" feature_type="numeric" value_field="clk_cate1_tgi_30_day" />
+                <feature  feature_name="1_product_conv_cate1_tgi_3_day" feature_type="numeric" value_field="conv_cate1_tgi_3_day" />
+                <feature  feature_name="1_product_conv_cate1_tgi_7_day" feature_type="numeric" value_field="conv_cate1_tgi_7_day" />
+                <feature  feature_name="1_product_conv_cate1_tgi_30_day" feature_type="numeric" value_field="conv_cate1_tgi_30_day" />
+                <feature  feature_name="1_product_imp_cate2_tgi_3_day" feature_type="numeric" value_field="imp_cate2_tgi_3_day" />
+                <feature  feature_name="1_product_imp_cate2_tgi_7_day" feature_type="numeric" value_field="imp_cate2_tgi_7_day" />
+                <feature  feature_name="1_product_imp_cate2_tgi_30_day" feature_type="numeric" value_field="imp_cate2_tgi_30_day" />
+                <feature  feature_name="1_product_clk_cate2_tgi_3_day" feature_type="numeric" value_field="clk_cate2_tgi_3_day" />
+                <feature  feature_name="1_product_clk_cate2_tgi_7_day" feature_type="numeric" value_field="clk_cate2_tgi_7_day" />
+                <feature  feature_name="1_product_clk_cate2_tgi_30_day" feature_type="numeric" value_field="clk_cate2_tgi_30_day" />
+                <feature  feature_name="1_product_conv_cate2_tgi_3_day" feature_type="numeric" value_field="conv_cate2_tgi_3_day" />
+                <feature  feature_name="1_product_conv_cate2_tgi_7_day" feature_type="numeric" value_field="conv_cate2_tgi_7_day" />
+                <feature  feature_name="1_product_conv_cate2_tgi_30_day" feature_type="numeric" value_field="conv_cate2_tgi_30_day" />
+            </features>
+        </feature_data>
+        <feature_data  name="ur::all_dimen_brand_ad_feats_table" norm_name="" time="">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="all_dimen_brand_ad_feats_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="cate_brand" to_id="cate_brand" id_field="dimen" join_field="cate_brand"/>
+            <features>
+                <feature  feature_name="1_brand_imp_cnt_1_day" feature_type="numeric" value_field="imp_cnt_1_day" />
+                <feature  feature_name="1_brand_imp_cnt_3_day" feature_type="numeric" value_field="imp_cnt_3_day" />
+                <feature  feature_name="1_brand_imp_cnt_7_day" feature_type="numeric" value_field="imp_cnt_7_day" />
+                <feature  feature_name="1_brand_clk_cnt_1_day" feature_type="numeric" value_field="clk_cnt_1_day" />
+                <feature  feature_name="1_brand_clk_cnt_3_day" feature_type="numeric" value_field="clk_cnt_3_day" />
+                <feature  feature_name="1_brand_clk_cnt_7_day" feature_type="numeric" value_field="clk_cnt_7_day" />
+                <feature  feature_name="1_brand_conv_cnt_1_day" feature_type="numeric" value_field="conv_cnt_1_day" />
+                <feature  feature_name="1_brand_conv_cnt_3_day" feature_type="numeric" value_field="conv_cnt_3_day" />
+                <feature  feature_name="1_brand_conv_cnt_7_day" feature_type="numeric" value_field="conv_cnt_7_day" />
+                <feature  feature_name="1_brand_ctr_1_day" feature_type="numeric" value_field="ctr_1_day" />
+                <feature  feature_name="1_brand_ctr_3_day" feature_type="numeric" value_field="ctr_3_day" />
+                <feature  feature_name="1_brand_ctr_7_day" feature_type="numeric" value_field="ctr_7_day" />
+                <feature  feature_name="1_brand_cvr_1_day" feature_type="numeric" value_field="cvr_1_day" />
+                <feature  feature_name="1_brand_cvr_3_day" feature_type="numeric" value_field="cvr_3_day" />
+                <feature  feature_name="1_brand_cvr_7_day" feature_type="numeric" value_field="cvr_7_day" />
+                <feature  feature_name="1_brand_imp_slope_a_3_day" feature_type="numeric" value_field="imp_slope_a_3_day" />
+                <feature  feature_name="1_brand_imp_slope_a_7_day" feature_type="numeric" value_field="imp_slope_a_7_day" />
+                <feature  feature_name="1_brand_imp_slope_a_30_day" feature_type="numeric" value_field="imp_slope_a_30_day" />
+                <feature  feature_name="1_brand_clk_slope_a_3_day" feature_type="numeric" value_field="clk_slope_a_3_day" />
+                <feature  feature_name="1_brand_clk_slope_a_7_day" feature_type="numeric" value_field="clk_slope_a_7_day" />
+                <feature  feature_name="1_brand_clk_slope_a_30_day" feature_type="numeric" value_field="clk_slope_a_30_day" />
+                <feature  feature_name="1_brand_conv_slope_a_3_day" feature_type="numeric" value_field="conv_slope_a_3_day" />
+                <feature  feature_name="1_brand_conv_slope_a_7_day" feature_type="numeric" value_field="conv_slope_a_7_day" />
+                <feature  feature_name="1_brand_conv_slope_a_30_day" feature_type="numeric" value_field="conv_slope_a_30_day" />
+                <feature  feature_name="1_brand_imp_slope_b_3_day" feature_type="numeric" value_field="imp_slope_b_3_day" />
+                <feature  feature_name="1_brand_imp_slope_b_7_day" feature_type="numeric" value_field="imp_slope_b_7_day" />
+                <feature  feature_name="1_brand_imp_slope_b_30_day" feature_type="numeric" value_field="imp_slope_b_30_day" />
+                <feature  feature_name="1_brand_clk_slope_b_3_day" feature_type="numeric" value_field="clk_slope_b_3_day" />
+                <feature  feature_name="1_brand_clk_slope_b_7_day" feature_type="numeric" value_field="clk_slope_b_7_day" />
+                <feature  feature_name="1_brand_clk_slope_b_30_day" feature_type="numeric" value_field="clk_slope_b_30_day" />
+                <feature  feature_name="1_brand_conv_slope_b_3_day" feature_type="numeric" value_field="conv_slope_b_3_day" />
+                <feature  feature_name="1_brand_conv_slope_b_7_day" feature_type="numeric" value_field="conv_slope_b_7_day" />
+                <feature  feature_name="1_brand_conv_slope_b_30_day" feature_type="numeric" value_field="conv_slope_b_30_day" />
+                <feature  feature_name="1_brand_imp_cate1_tgi_3_day" feature_type="numeric" value_field="imp_cate1_tgi_3_day" />
+                <feature  feature_name="1_brand_imp_cate1_tgi_7_day" feature_type="numeric" value_field="imp_cate1_tgi_7_day" />
+                <feature  feature_name="1_brand_imp_cate1_tgi_30_day" feature_type="numeric" value_field="imp_cate1_tgi_30_day" />
+                <feature  feature_name="1_brand_clk_cate1_tgi_3_day" feature_type="numeric" value_field="clk_cate1_tgi_3_day" />
+                <feature  feature_name="1_brand_clk_cate1_tgi_7_day" feature_type="numeric" value_field="clk_cate1_tgi_7_day" />
+                <feature  feature_name="1_brand_clk_cate1_tgi_30_day" feature_type="numeric" value_field="clk_cate1_tgi_30_day" />
+                <feature  feature_name="1_brand_conv_cate1_tgi_3_day" feature_type="numeric" value_field="conv_cate1_tgi_3_day" />
+                <feature  feature_name="1_brand_conv_cate1_tgi_7_day" feature_type="numeric" value_field="conv_cate1_tgi_7_day" />
+                <feature  feature_name="1_brand_conv_cate1_tgi_30_day" feature_type="numeric" value_field="conv_cate1_tgi_30_day" />
+                <feature  feature_name="1_brand_imp_cate2_tgi_3_day" feature_type="numeric" value_field="imp_cate2_tgi_3_day" />
+                <feature  feature_name="1_brand_imp_cate2_tgi_7_day" feature_type="numeric" value_field="imp_cate2_tgi_7_day" />
+                <feature  feature_name="1_brand_imp_cate2_tgi_30_day" feature_type="numeric" value_field="imp_cate2_tgi_30_day" />
+                <feature  feature_name="1_brand_clk_cate2_tgi_3_day" feature_type="numeric" value_field="clk_cate2_tgi_3_day" />
+                <feature  feature_name="1_brand_clk_cate2_tgi_7_day" feature_type="numeric" value_field="clk_cate2_tgi_7_day" />
+                <feature  feature_name="1_brand_clk_cate2_tgi_30_day" feature_type="numeric" value_field="clk_cate2_tgi_30_day" />
+                <feature  feature_name="1_brand_conv_cate2_tgi_3_day" feature_type="numeric" value_field="conv_cate2_tgi_3_day" />
+                <feature  feature_name="1_brand_conv_cate2_tgi_7_day" feature_type="numeric" value_field="conv_cate2_tgi_7_day" />
+                <feature  feature_name="1_brand_conv_cate2_tgi_30_day" feature_type="numeric" value_field="conv_cate2_tgi_30_day" />
+            </features>
+        </feature_data>
+        <feature_data  name="ur::all_dimen_cate3_ad_feats_table" norm_name="" time="">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="all_dimen_cate3_ad_feats_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="cate_name3_join" to_id="cate_name3_join" id_field="dimen" join_field="cate_name3_join"/>
+            <features>
+                <feature  feature_name="1_cate3_imp_cnt_1_day" feature_type="numeric" value_field="imp_cnt_1_day" />
+                <feature  feature_name="1_cate3_imp_cnt_3_day" feature_type="numeric" value_field="imp_cnt_3_day" />
+                <feature  feature_name="1_cate3_imp_cnt_7_day" feature_type="numeric" value_field="imp_cnt_7_day" />
+                <feature  feature_name="1_cate3_clk_cnt_1_day" feature_type="numeric" value_field="clk_cnt_1_day" />
+                <feature  feature_name="1_cate3_clk_cnt_3_day" feature_type="numeric" value_field="clk_cnt_3_day" />
+                <feature  feature_name="1_cate3_clk_cnt_7_day" feature_type="numeric" value_field="clk_cnt_7_day" />
+                <feature  feature_name="1_cate3_conv_cnt_1_day" feature_type="numeric" value_field="conv_cnt_1_day" />
+                <feature  feature_name="1_cate3_conv_cnt_3_day" feature_type="numeric" value_field="conv_cnt_3_day" />
+                <feature  feature_name="1_cate3_conv_cnt_7_day" feature_type="numeric" value_field="conv_cnt_7_day" />
+                <feature  feature_name="1_cate3_ctr_1_day" feature_type="numeric" value_field="ctr_1_day" />
+                <feature  feature_name="1_cate3_ctr_3_day" feature_type="numeric" value_field="ctr_3_day" />
+                <feature  feature_name="1_cate3_ctr_7_day" feature_type="numeric" value_field="ctr_7_day" />
+                <feature  feature_name="1_cate3_cvr_1_day" feature_type="numeric" value_field="cvr_1_day" />
+                <feature  feature_name="1_cate3_cvr_3_day" feature_type="numeric" value_field="cvr_3_day" />
+                <feature  feature_name="1_cate3_cvr_7_day" feature_type="numeric" value_field="cvr_7_day" />
+                <feature  feature_name="1_cate3_imp_slope_a_3_day" feature_type="numeric" value_field="imp_slope_a_3_day" />
+                <feature  feature_name="1_cate3_imp_slope_a_7_day" feature_type="numeric" value_field="imp_slope_a_7_day" />
+                <feature  feature_name="1_cate3_imp_slope_a_30_day" feature_type="numeric" value_field="imp_slope_a_30_day" />
+                <feature  feature_name="1_cate3_clk_slope_a_3_day" feature_type="numeric" value_field="clk_slope_a_3_day" />
+                <feature  feature_name="1_cate3_clk_slope_a_7_day" feature_type="numeric" value_field="clk_slope_a_7_day" />
+                <feature  feature_name="1_cate3_clk_slope_a_30_day" feature_type="numeric" value_field="clk_slope_a_30_day" />
+                <feature  feature_name="1_cate3_conv_slope_a_3_day" feature_type="numeric" value_field="conv_slope_a_3_day" />
+                <feature  feature_name="1_cate3_conv_slope_a_7_day" feature_type="numeric" value_field="conv_slope_a_7_day" />
+                <feature  feature_name="1_cate3_conv_slope_a_30_day" feature_type="numeric" value_field="conv_slope_a_30_day" />
+                <feature  feature_name="1_cate3_imp_slope_b_3_day" feature_type="numeric" value_field="imp_slope_b_3_day" />
+                <feature  feature_name="1_cate3_imp_slope_b_7_day" feature_type="numeric" value_field="imp_slope_b_7_day" />
+                <feature  feature_name="1_cate3_imp_slope_b_30_day" feature_type="numeric" value_field="imp_slope_b_30_day" />
+                <feature  feature_name="1_cate3_clk_slope_b_3_day" feature_type="numeric" value_field="clk_slope_b_3_day" />
+                <feature  feature_name="1_cate3_clk_slope_b_7_day" feature_type="numeric" value_field="clk_slope_b_7_day" />
+                <feature  feature_name="1_cate3_clk_slope_b_30_day" feature_type="numeric" value_field="clk_slope_b_30_day" />
+                <feature  feature_name="1_cate3_conv_slope_b_3_day" feature_type="numeric" value_field="conv_slope_b_3_day" />
+                <feature  feature_name="1_cate3_conv_slope_b_7_day" feature_type="numeric" value_field="conv_slope_b_7_day" />
+                <feature  feature_name="1_cate3_conv_slope_b_30_day" feature_type="numeric" value_field="conv_slope_b_30_day" />
+                <feature  feature_name="1_cate3_imp_cate1_tgi_3_day" feature_type="numeric" value_field="imp_cate1_tgi_3_day" />
+                <feature  feature_name="1_cate3_imp_cate1_tgi_7_day" feature_type="numeric" value_field="imp_cate1_tgi_7_day" />
+                <feature  feature_name="1_cate3_imp_cate1_tgi_30_day" feature_type="numeric" value_field="imp_cate1_tgi_30_day" />
+                <feature  feature_name="1_cate3_clk_cate1_tgi_3_day" feature_type="numeric" value_field="clk_cate1_tgi_3_day" />
+                <feature  feature_name="1_cate3_clk_cate1_tgi_7_day" feature_type="numeric" value_field="clk_cate1_tgi_7_day" />
+                <feature  feature_name="1_cate3_clk_cate1_tgi_30_day" feature_type="numeric" value_field="clk_cate1_tgi_30_day" />
+                <feature  feature_name="1_cate3_conv_cate1_tgi_3_day" feature_type="numeric" value_field="conv_cate1_tgi_3_day" />
+                <feature  feature_name="1_cate3_conv_cate1_tgi_7_day" feature_type="numeric" value_field="conv_cate1_tgi_7_day" />
+                <feature  feature_name="1_cate3_conv_cate1_tgi_30_day" feature_type="numeric" value_field="conv_cate1_tgi_30_day" />
+                <feature  feature_name="1_cate3_imp_cate2_tgi_3_day" feature_type="numeric" value_field="imp_cate2_tgi_3_day" />
+                <feature  feature_name="1_cate3_imp_cate2_tgi_7_day" feature_type="numeric" value_field="imp_cate2_tgi_7_day" />
+                <feature  feature_name="1_cate3_imp_cate2_tgi_30_day" feature_type="numeric" value_field="imp_cate2_tgi_30_day" />
+                <feature  feature_name="1_cate3_clk_cate2_tgi_3_day" feature_type="numeric" value_field="clk_cate2_tgi_3_day" />
+                <feature  feature_name="1_cate3_clk_cate2_tgi_7_day" feature_type="numeric" value_field="clk_cate2_tgi_7_day" />
+                <feature  feature_name="1_cate3_clk_cate2_tgi_30_day" feature_type="numeric" value_field="clk_cate2_tgi_30_day" />
+                <feature  feature_name="1_cate3_conv_cate2_tgi_3_day" feature_type="numeric" value_field="conv_cate2_tgi_3_day" />
+                <feature  feature_name="1_cate3_conv_cate2_tgi_7_day" feature_type="numeric" value_field="conv_cate2_tgi_7_day" />
+                <feature  feature_name="1_cate3_conv_cate2_tgi_30_day" feature_type="numeric" value_field="conv_cate2_tgi_30_day" />
+            </features>
+        </feature_data>
+        <feature_data  name="ur::all_dimen_cate3_ad_feats_table" norm_name="" time="">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="all_dimen_cate4_ad_feats_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="cate_name4_join" to_id="cate_name4_join" id_field="dimen" join_field="cate_name4_join"/>
+            <features>
+                <feature  feature_name="1_cate4_imp_cnt_1_day" feature_type="numeric" value_field="imp_cnt_1_day" />
+                <feature  feature_name="1_cate4_imp_cnt_3_day" feature_type="numeric" value_field="imp_cnt_3_day" />
+                <feature  feature_name="1_cate4_imp_cnt_7_day" feature_type="numeric" value_field="imp_cnt_7_day" />
+                <feature  feature_name="1_cate4_clk_cnt_1_day" feature_type="numeric" value_field="clk_cnt_1_day" />
+                <feature  feature_name="1_cate4_clk_cnt_3_day" feature_type="numeric" value_field="clk_cnt_3_day" />
+                <feature  feature_name="1_cate4_clk_cnt_7_day" feature_type="numeric" value_field="clk_cnt_7_day" />
+                <feature  feature_name="1_cate4_conv_cnt_1_day" feature_type="numeric" value_field="conv_cnt_1_day" />
+                <feature  feature_name="1_cate4_conv_cnt_3_day" feature_type="numeric" value_field="conv_cnt_3_day" />
+                <feature  feature_name="1_cate4_conv_cnt_7_day" feature_type="numeric" value_field="conv_cnt_7_day" />
+                <feature  feature_name="1_cate4_ctr_1_day" feature_type="numeric" value_field="ctr_1_day" />
+                <feature  feature_name="1_cate4_ctr_3_day" feature_type="numeric" value_field="ctr_3_day" />
+                <feature  feature_name="1_cate4_ctr_7_day" feature_type="numeric" value_field="ctr_7_day" />
+                <feature  feature_name="1_cate4_cvr_1_day" feature_type="numeric" value_field="cvr_1_day" />
+                <feature  feature_name="1_cate4_cvr_3_day" feature_type="numeric" value_field="cvr_3_day" />
+                <feature  feature_name="1_cate4_cvr_7_day" feature_type="numeric" value_field="cvr_7_day" />
+                <feature  feature_name="1_cate4_imp_slope_a_3_day" feature_type="numeric" value_field="imp_slope_a_3_day" />
+                <feature  feature_name="1_cate4_imp_slope_a_7_day" feature_type="numeric" value_field="imp_slope_a_7_day" />
+                <feature  feature_name="1_cate4_imp_slope_a_30_day" feature_type="numeric" value_field="imp_slope_a_30_day" />
+                <feature  feature_name="1_cate4_clk_slope_a_3_day" feature_type="numeric" value_field="clk_slope_a_3_day" />
+                <feature  feature_name="1_cate4_clk_slope_a_7_day" feature_type="numeric" value_field="clk_slope_a_7_day" />
+                <feature  feature_name="1_cate4_clk_slope_a_30_day" feature_type="numeric" value_field="clk_slope_a_30_day" />
+                <feature  feature_name="1_cate4_conv_slope_a_3_day" feature_type="numeric" value_field="conv_slope_a_3_day" />
+                <feature  feature_name="1_cate4_conv_slope_a_7_day" feature_type="numeric" value_field="conv_slope_a_7_day" />
+                <feature  feature_name="1_cate4_conv_slope_a_30_day" feature_type="numeric" value_field="conv_slope_a_30_day" />
+                <feature  feature_name="1_cate4_imp_slope_b_3_day" feature_type="numeric" value_field="imp_slope_b_3_day" />
+                <feature  feature_name="1_cate4_imp_slope_b_7_day" feature_type="numeric" value_field="imp_slope_b_7_day" />
+                <feature  feature_name="1_cate4_imp_slope_b_30_day" feature_type="numeric" value_field="imp_slope_b_30_day" />
+                <feature  feature_name="1_cate4_clk_slope_b_3_day" feature_type="numeric" value_field="clk_slope_b_3_day" />
+                <feature  feature_name="1_cate4_clk_slope_b_7_day" feature_type="numeric" value_field="clk_slope_b_7_day" />
+                <feature  feature_name="1_cate4_clk_slope_b_30_day" feature_type="numeric" value_field="clk_slope_b_30_day" />
+                <feature  feature_name="1_cate4_conv_slope_b_3_day" feature_type="numeric" value_field="conv_slope_b_3_day" />
+                <feature  feature_name="1_cate4_conv_slope_b_7_day" feature_type="numeric" value_field="conv_slope_b_7_day" />
+                <feature  feature_name="1_cate4_conv_slope_b_30_day" feature_type="numeric" value_field="conv_slope_b_30_day" />
+                <feature  feature_name="1_cate4_imp_cate1_tgi_3_day" feature_type="numeric" value_field="imp_cate1_tgi_3_day" />
+                <feature  feature_name="1_cate4_imp_cate1_tgi_7_day" feature_type="numeric" value_field="imp_cate1_tgi_7_day" />
+                <feature  feature_name="1_cate4_imp_cate1_tgi_30_day" feature_type="numeric" value_field="imp_cate1_tgi_30_day" />
+                <feature  feature_name="1_cate4_clk_cate1_tgi_3_day" feature_type="numeric" value_field="clk_cate1_tgi_3_day" />
+                <feature  feature_name="1_cate4_clk_cate1_tgi_7_day" feature_type="numeric" value_field="clk_cate1_tgi_7_day" />
+                <feature  feature_name="1_cate4_clk_cate1_tgi_30_day" feature_type="numeric" value_field="clk_cate1_tgi_30_day" />
+                <feature  feature_name="1_cate4_conv_cate1_tgi_3_day" feature_type="numeric" value_field="conv_cate1_tgi_3_day" />
+                <feature  feature_name="1_cate4_conv_cate1_tgi_7_day" feature_type="numeric" value_field="conv_cate1_tgi_7_day" />
+                <feature  feature_name="1_cate4_conv_cate1_tgi_30_day" feature_type="numeric" value_field="conv_cate1_tgi_30_day" />
+                <feature  feature_name="1_cate4_imp_cate2_tgi_3_day" feature_type="numeric" value_field="imp_cate2_tgi_3_day" />
+                <feature  feature_name="1_cate4_imp_cate2_tgi_7_day" feature_type="numeric" value_field="imp_cate2_tgi_7_day" />
+                <feature  feature_name="1_cate4_imp_cate2_tgi_30_day" feature_type="numeric" value_field="imp_cate2_tgi_30_day" />
+                <feature  feature_name="1_cate4_clk_cate2_tgi_3_day" feature_type="numeric" value_field="clk_cate2_tgi_3_day" />
+                <feature  feature_name="1_cate4_clk_cate2_tgi_7_day" feature_type="numeric" value_field="clk_cate2_tgi_7_day" />
+                <feature  feature_name="1_cate4_clk_cate2_tgi_30_day" feature_type="numeric" value_field="clk_cate2_tgi_30_day" />
+                <feature  feature_name="1_cate4_conv_cate2_tgi_3_day" feature_type="numeric" value_field="conv_cate2_tgi_3_day" />
+                <feature  feature_name="1_cate4_conv_cate2_tgi_7_day" feature_type="numeric" value_field="conv_cate2_tgi_7_day" />
+                <feature  feature_name="1_cate4_conv_cate2_tgi_30_day" feature_type="numeric" value_field="conv_cate2_tgi_30_day" />
+            </features>
+        </feature_data>
+
+        <feature_data  name="ur::dimension_cate3_hot_feats_on_reading_daily_table" norm_name="" time="">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="dimension_cate3_hot_feats_on_reading_daily_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="cate_name3_join" to_id="cate_name3_join" id_field="dimen" join_field="cate_name3_join"/>
+            <features>
+                <feature  feature_name="1_cate3_read_d7_slope_a" feature_type="numeric" value_field="d7_user_num_slope_a" />
+                <feature  feature_name="1_cate3_read_d7_slope_a_row" feature_type="numeric" value_field="d7_user_num_slope_a_row" />
+                <feature  feature_name="1_cate3_read_d3_row" feature_type="numeric" value_field="d3_user_row" />
+                <feature  feature_name="1_cate3_read_d15_slope_a" feature_type="numeric" value_field="d15_user_num_slope_a" />
+                <feature  feature_name="1_cate3_read_d15_slope_a_row" feature_type="numeric" value_field="d15_user_num_slope_a_row" />
+                <feature  feature_name="1_cate3_read_d7_row" feature_type="numeric" value_field="d7_user_row" />
+                <feature  feature_name="1_cate3_read_d30_slope_a" feature_type="numeric" value_field="d30_user_num_slope_a" />
+                <feature  feature_name="1_cate3_read_d30_slope_a_row" feature_type="numeric" value_field="d30_user_num_slope_a_row" />
+                <feature  feature_name="1_cate3_read_d30_row" feature_type="numeric" value_field="d30_user_row" />
+            </features>
+        </feature_data>
+        <feature_data  name="ur::dimension_cate4_hot_feats_on_reading_daily_table" norm_name="" time="">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="dimension_cate4_hot_feats_on_reading_daily_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="cate_name4_join" to_id="cate_name4_join" id_field="dimen" join_field="cate_name4_join"/>
+            <features>
+                <feature  feature_name="1_cate4_read_d7_slope_a" feature_type="numeric" value_field="d7_user_num_slope_a" />
+                <feature  feature_name="1_cate4_read_d7_slope_a_row" feature_type="numeric" value_field="d7_user_num_slope_a_row" />
+                <feature  feature_name="1_cate4_read_d3_row" feature_type="numeric" value_field="d3_user_row" />
+                <feature  feature_name="1_cate4_read_d15_slope_a" feature_type="numeric" value_field="d15_user_num_slope_a" />
+                <feature  feature_name="1_cate4_read_d15_slope_a_row" feature_type="numeric" value_field="d15_user_num_slope_a_row" />
+                <feature  feature_name="1_cate4_read_d7_row" feature_type="numeric" value_field="d7_user_row" />
+                <feature  feature_name="1_cate4_read_d30_slope_a" feature_type="numeric" value_field="d30_user_num_slope_a" />
+                <feature  feature_name="1_cate4_read_d30_slope_a_row" feature_type="numeric" value_field="d30_user_num_slope_a_row" />
+                <feature  feature_name="1_cate4_read_d30_row" feature_type="numeric" value_field="d30_user_row" />
+            </features>
+        </feature_data>
+        <feature_data  name="ur::dimension_product_hot_feats_on_reading_daily_table" norm_name="" time="">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="dimension_product_hot_feats_on_reading_daily_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="cate2_product" to_id="cate2_product" id_field="dimen" join_field="cate2_product"/>
+            <features>
+                <feature  feature_name="1_product_read_d7_slope_a" feature_type="numeric" value_field="d7_user_num_slope_a" />
+                <feature  feature_name="1_product_read_d7_slope_a_row" feature_type="numeric" value_field="d7_user_num_slope_a_row" />
+                <feature  feature_name="1_product_read_d3_row" feature_type="numeric" value_field="d3_user_row" />
+                <feature  feature_name="1_product_read_d15_slope_a" feature_type="numeric" value_field="d15_user_num_slope_a" />
+                <feature  feature_name="1_product_read_d15_slope_a_row" feature_type="numeric" value_field="d15_user_num_slope_a_row" />
+                <feature  feature_name="1_product_read_d7_row" feature_type="numeric" value_field="d7_user_row" />
+                <feature  feature_name="1_product_read_d30_slope_a" feature_type="numeric" value_field="d30_user_num_slope_a" />
+                <feature  feature_name="1_product_read_d30_slope_a_row" feature_type="numeric" value_field="d30_user_num_slope_a_row" />
+                <feature  feature_name="1_product_read_d30_row" feature_type="numeric" value_field="d30_user_row" />
+            </features>
+        </feature_data>
+        <feature_data  name="ur::dimension_brand_hot_feats_on_reading_daily_table" norm_name="" time="">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="dimension_brand_hot_feats_on_reading_daily_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="cate2_brand" to_id="cate2_brand" id_field="dimen" join_field="cate2_brand"/>
+            <features>
+                <feature  feature_name="1_brand_read_d7_slope_a" feature_type="numeric" value_field="d7_user_num_slope_a" />
+                <feature  feature_name="1_brand_read_d7_slope_a_row" feature_type="numeric" value_field="d7_user_num_slope_a_row" />
+                <feature  feature_name="1_brand_read_d3_row" feature_type="numeric" value_field="d3_user_row" />
+                <feature  feature_name="1_brand_read_d15_slope_a" feature_type="numeric" value_field="d15_user_num_slope_a" />
+                <feature  feature_name="1_brand_read_d15_slope_a_row" feature_type="numeric" value_field="d15_user_num_slope_a_row" />
+                <feature  feature_name="1_brand_read_d7_row" feature_type="numeric" value_field="d7_user_row" />
+                <feature  feature_name="1_brand_read_d30_slope_a" feature_type="numeric" value_field="d30_user_num_slope_a" />
+                <feature  feature_name="1_brand_read_d30_slope_a_row" feature_type="numeric" value_field="d30_user_num_slope_a_row" />
+                <feature  feature_name="1_brand_read_d30_row" feature_type="numeric" value_field="d30_user_row" />
+            </features>
+        </feature_data>
+        <feature_data  name="ur::dimension_cate3_hot_feats_on_search_daily_table" norm_name="" time="">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="dimension_cate3_hot_feats_on_search_daily_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="cate_name3_join" to_id="cate_name3_join" id_field="dimen" join_field="cate_name3_join"/>
+            <features>
+                <feature  feature_name="1_cate3_search_d7_slope_a" feature_type="numeric" value_field="d7_user_num_slope_a" />
+                <feature  feature_name="1_cate3_search_d7_slope_a_row" feature_type="numeric" value_field="d7_user_num_slope_a_row" />
+                <feature  feature_name="1_cate3_search_d3_row" feature_type="numeric" value_field="d3_user_row" />
+                <feature  feature_name="1_cate3_search_d15_slope_a" feature_type="numeric" value_field="d15_user_num_slope_a" />
+                <feature  feature_name="1_cate3_search_d15_slope_a_row" feature_type="numeric" value_field="d15_user_num_slope_a_row" />
+                <feature  feature_name="1_cate3_search_d7_row" feature_type="numeric" value_field="d7_user_row" />
+                <feature  feature_name="1_cate3_search_d30_slope_a" feature_type="numeric" value_field="d30_user_num_slope_a" />
+                <feature  feature_name="1_cate3_search_d30_slope_a_row" feature_type="numeric" value_field="d30_user_num_slope_a_row" />
+                <feature  feature_name="1_cate3_search_d30_row" feature_type="numeric" value_field="d30_user_row" />
+            </features>
+        </feature_data>
+        <feature_data  name="ur::dimension_cate4_hot_feats_on_search_daily_table" norm_name="" time="">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="dimension_cate4_hot_feats_on_search_daily_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="cate_name4_join" to_id="cate_name4_join" id_field="dimen" join_field="cate_name4_join"/>
+            <features>
+                <feature  feature_name="1_cate4_search_d7_slope_a" feature_type="numeric" value_field="d7_user_num_slope_a" />
+                <feature  feature_name="1_cate4_search_d7_slope_a_row" feature_type="numeric" value_field="d7_user_num_slope_a_row" />
+                <feature  feature_name="1_cate4_search_d3_row" feature_type="numeric" value_field="d3_user_row" />
+                <feature  feature_name="1_cate4_search_d15_slope_a" feature_type="numeric" value_field="d15_user_num_slope_a" />
+                <feature  feature_name="1_cate4_search_d15_slope_a_row" feature_type="numeric" value_field="d15_user_num_slope_a_row" />
+                <feature  feature_name="1_cate4_search_d7_row" feature_type="numeric" value_field="d7_user_row" />
+                <feature  feature_name="1_cate4_search_d30_slope_a" feature_type="numeric" value_field="d30_user_num_slope_a" />
+                <feature  feature_name="1_cate4_search_d30_slope_a_row" feature_type="numeric" value_field="d30_user_num_slope_a_row" />
+                <feature  feature_name="1_cate4_search_d30_row" feature_type="numeric" value_field="d30_user_row" />
+            </features>
+        </feature_data>
+        <feature_data  name="ur::dimension_product_hot_feats_on_search_daily_table" norm_name="" time="">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="dimension_product_hot_feats_on_search_daily_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="cate2_product" to_id="cate2_product" id_field="dimen" join_field="cate2_product"/>
+            <features>
+                <feature  feature_name="1_product_search_d7_slope_a" feature_type="numeric" value_field="d7_user_num_slope_a" />
+                <feature  feature_name="1_product_search_d7_slope_a_row" feature_type="numeric" value_field="d7_user_num_slope_a_row" />
+                <feature  feature_name="1_product_search_d3_row" feature_type="numeric" value_field="d3_user_row" />
+                <feature  feature_name="1_product_search_d15_slope_a" feature_type="numeric" value_field="d15_user_num_slope_a" />
+                <feature  feature_name="1_product_search_d15_slope_a_row" feature_type="numeric" value_field="d15_user_num_slope_a_row" />
+                <feature  feature_name="1_product_search_d7_row" feature_type="numeric" value_field="d7_user_row" />
+                <feature  feature_name="1_product_search_d30_slope_a" feature_type="numeric" value_field="d30_user_num_slope_a" />
+                <feature  feature_name="1_product_search_d30_slope_a_row" feature_type="numeric" value_field="d30_user_num_slope_a_row" />
+                <feature  feature_name="1_product_search_d30_row" feature_type="numeric" value_field="d30_user_row" />
+            </features>
+        </feature_data>
+        <feature_data  name="ur::dimension_brand_hot_feats_on_search_daily_table" norm_name="" time="">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="dimension_brand_hot_feats_on_search_daily_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="cate2_brand" to_id="cate2_brand" id_field="dimen" join_field="cate2_brand"/>
+            <features>
+                <feature  feature_name="1_brand_search_d7_slope_a" feature_type="numeric" value_field="d7_user_num_slope_a" />
+                <feature  feature_name="1_brand_search_d7_slope_a_row" feature_type="numeric" value_field="d7_user_num_slope_a_row" />
+                <feature  feature_name="1_brand_search_d3_row" feature_type="numeric" value_field="d3_user_row" />
+                <feature  feature_name="1_brand_search_d15_slope_a" feature_type="numeric" value_field="d15_user_num_slope_a" />
+                <feature  feature_name="1_brand_search_d15_slope_a_row" feature_type="numeric" value_field="d15_user_num_slope_a_row" />
+                <feature  feature_name="1_brand_search_d7_row" feature_type="numeric" value_field="d7_user_row" />
+                <feature  feature_name="1_brand_search_d30_slope_a" feature_type="numeric" value_field="d30_user_num_slope_a" />
+                <feature  feature_name="1_brand_search_d30_slope_a_row" feature_type="numeric" value_field="d30_user_num_slope_a_row" />
+                <feature  feature_name="1_brand_search_d30_row" feature_type="numeric" value_field="d30_user_row" />
+            </features>
+        </feature_data>
+
+        <feature_data  name="ur::cate3_dimen_sales_feats_table" norm_name="" time="">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="cate3_dimen_sales_feats_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="cate_name3_join" to_id="cate_name3_join" id_field="dimen" join_field="cate_name3_join"/>
+            <features>
+                <feature  feature_name="1_cate3_month_sales_row" feature_type="numeric" value_field="month_sales_row" />
+                <feature  feature_name="1_cate3_week_sales_row" feature_type="numeric" value_field="week_sales_row" />
+            </features>
+        </feature_data>
+        <feature_data  name="ur::cate4_dimen_sales_feats_table" norm_name="" time="">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="cate4_dimen_sales_feats_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="cate_name4_join" to_id="cate_name4_join" id_field="dimen" join_field="cate_name4_join"/>
+            <features>
+                <feature  feature_name="1_cate4_month_sales_row" feature_type="numeric" value_field="month_sales_row" />
+                <feature  feature_name="1_cate4_week_sales_row" feature_type="numeric" value_field="week_sales_row" />
+            </features>
+        </feature_data>
+        <feature_data  name="ur::brand_dimen_sales_feats_table" norm_name="" time="">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="brand_dimen_sales_feats_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="cate2_brand" to_id="cate2_brand" id_field="dimen" join_field="cate2_brand"/>
+            <features>
+                <feature  feature_name="1_brand_month_sales_row" feature_type="numeric" value_field="month_sales_row" />
+                <feature  feature_name="1_brand_week_sales_row" feature_type="numeric" value_field="week_sales_row" />
+            </features>
+        </feature_data>
+        <feature_data  name="ur::product_dimen_sales_feats_table" norm_name="" time="">
+            <input>
+                <type  name="tdw"/>
+                <db  name="ur"/>
+                <tbl  name="product_dimen_sales_feats_table"/>
+                <parts  name="-1"/>
+            </input>
+            <id_conf  from_id="cate2_product" to_id="cate2_product" id_field="dimen" join_field="cate2_product"/>
+            <features>
+                <feature  feature_name="1_product_month_sales_row" feature_type="numeric" value_field="month_sales_row" />
+                <feature  feature_name="1_product_week_sales_row" feature_type="numeric" value_field="week_sales_row" />
+            </features>
+        </feature_data>
+    </feature_collect>
+
+    <gen_feature> <!--最终样本中使用的特征-->
+        <features  name="id_features">
+            <feature name="1_product_imp_cnt_1_day" />
+            <feature name="1_product_imp_cnt_3_day" />
+            <feature name="1_product_imp_cnt_7_day" />
+            <feature name="1_product_clk_cnt_1_day" />
+            <feature name="1_product_clk_cnt_3_day" />
+            <feature name="1_product_clk_cnt_7_day" />
+            <feature name="1_product_conv_cnt_1_day" />
+            <feature name="1_product_conv_cnt_3_day" />
+            <feature name="1_product_conv_cnt_7_day" />
+            <feature name="1_product_ctr_1_day" />
+            <feature name="1_product_ctr_3_day" />
+            <feature name="1_product_ctr_7_day" />
+            <feature name="1_product_cvr_1_day" />
+            <feature name="1_product_cvr_3_day" />
+            <feature name="1_product_cvr_7_day" />
+            <feature name="1_product_imp_slope_a_3_day" />
+            <feature name="1_product_imp_slope_a_7_day" />
+            <feature name="1_product_imp_slope_a_30_day" />
+            <feature name="1_product_clk_slope_a_3_day" />
+            <feature name="1_product_clk_slope_a_7_day" />
+            <feature name="1_product_clk_slope_a_30_day" />
+            <feature name="1_product_conv_slope_a_3_day" />
+            <feature name="1_product_conv_slope_a_7_day" />
+            <feature name="1_product_conv_slope_a_30_day" />
+            <feature name="1_product_imp_slope_b_3_day" />
+            <feature name="1_product_imp_slope_b_7_day" />
+            <feature name="1_product_imp_slope_b_30_day" />
+            <feature name="1_product_clk_slope_b_3_day" />
+            <feature name="1_product_clk_slope_b_7_day" />
+            <feature name="1_product_clk_slope_b_30_day" />
+            <feature name="1_product_conv_slope_b_3_day" />
+            <feature name="1_product_conv_slope_b_7_day" />
+            <feature name="1_product_conv_slope_b_30_day" />
+            <feature name="1_product_imp_cate1_tgi_3_day" />
+            <feature name="1_product_imp_cate1_tgi_7_day" />
+            <feature name="1_product_imp_cate1_tgi_30_day" />
+            <feature name="1_product_clk_cate1_tgi_3_day" />
+            <feature name="1_product_clk_cate1_tgi_7_day" />
+            <feature name="1_product_clk_cate1_tgi_30_day" />
+            <feature name="1_product_conv_cate1_tgi_3_day" />
+            <feature name="1_product_conv_cate1_tgi_7_day" />
+            <feature name="1_product_conv_cate1_tgi_30_day" />
+            <feature name="1_product_imp_cate2_tgi_3_day" />
+            <feature name="1_product_imp_cate2_tgi_7_day" />
+            <feature name="1_product_imp_cate2_tgi_30_day" />
+            <feature name="1_product_clk_cate2_tgi_3_day" />
+            <feature name="1_product_clk_cate2_tgi_7_day" />
+            <feature name="1_product_clk_cate2_tgi_30_day" />
+            <feature name="1_product_conv_cate2_tgi_3_day" />
+            <feature name="1_product_conv_cate2_tgi_7_day" />
+            <feature name="1_product_conv_cate2_tgi_30_day" />
+            <feature name="1_currMonth" />
+            <feature name="1_xuntype" />
+            <feature name="1_product" />
+            <feature name="1_brandid" />
+            <feature name="1_cate1" />
+            <feature name="1_cate2" />
+            <feature name="1_cate3" />
+            <feature name="1_cate4" />
+            <feature name="1_brand_imp_cnt_1_day" />
+            <feature name="1_brand_imp_cnt_3_day" />
+            <feature name="1_brand_imp_cnt_7_day" />
+            <feature name="1_brand_clk_cnt_1_day" />
+            <feature name="1_brand_clk_cnt_3_day" />
+            <feature name="1_brand_clk_cnt_7_day" />
+            <feature name="1_brand_conv_cnt_1_day" />
+            <feature name="1_brand_conv_cnt_3_day" />
+            <feature name="1_brand_conv_cnt_7_day" />
+            <feature name="1_brand_ctr_1_day" />
+            <feature name="1_brand_ctr_3_day" />
+            <feature name="1_brand_ctr_7_day" />
+            <feature name="1_brand_cvr_1_day" />
+            <feature name="1_brand_cvr_3_day" />
+            <feature name="1_brand_cvr_7_day" />
+            <feature name="1_brand_imp_slope_a_3_day" />
+            <feature name="1_brand_imp_slope_a_7_day" />
+            <feature name="1_brand_imp_slope_a_30_day" />
+            <feature name="1_brand_clk_slope_a_3_day" />
+            <feature name="1_brand_clk_slope_a_7_day" />
+            <feature name="1_brand_clk_slope_a_30_day" />
+            <feature name="1_brand_conv_slope_a_3_day" />
+            <feature name="1_brand_conv_slope_a_7_day" />
+            <feature name="1_brand_conv_slope_a_30_day" />
+            <feature name="1_brand_imp_slope_b_3_day" />
+            <feature name="1_brand_imp_slope_b_7_day" />
+            <feature name="1_brand_imp_slope_b_30_day" />
+            <feature name="1_brand_clk_slope_b_3_day" />
+            <feature name="1_brand_clk_slope_b_7_day" />
+            <feature name="1_brand_clk_slope_b_30_day" />
+            <feature name="1_brand_conv_slope_b_3_day" />
+            <feature name="1_brand_conv_slope_b_7_day" />
+            <feature name="1_brand_conv_slope_b_30_day" />
+            <feature name="1_brand_imp_cate1_tgi_3_day" />
+            <feature name="1_brand_imp_cate1_tgi_7_day" />
+            <feature name="1_brand_imp_cate1_tgi_30_day" />
+            <feature name="1_brand_clk_cate1_tgi_3_day" />
+            <feature name="1_brand_clk_cate1_tgi_7_day" />
+            <feature name="1_brand_clk_cate1_tgi_30_day" />
+            <feature name="1_brand_conv_cate1_tgi_3_day" />
+            <feature name="1_brand_conv_cate1_tgi_7_day" />
+            <feature name="1_brand_conv_cate1_tgi_30_day" />
+            <feature name="1_brand_imp_cate2_tgi_3_day" />
+            <feature name="1_brand_imp_cate2_tgi_7_day" />
+            <feature name="1_brand_imp_cate2_tgi_30_day" />
+            <feature name="1_brand_clk_cate2_tgi_3_day" />
+            <feature name="1_brand_clk_cate2_tgi_7_day" />
+            <feature name="1_brand_clk_cate2_tgi_30_day" />
+            <feature name="1_brand_conv_cate2_tgi_3_day" />
+            <feature name="1_brand_conv_cate2_tgi_7_day" />
+            <feature name="1_brand_conv_cate2_tgi_30_day" />
+            <feature name="1_cate3_imp_cnt_1_day" />
+            <feature name="1_cate3_imp_cnt_3_day" />
+            <feature name="1_cate3_imp_cnt_7_day" />
+            <feature name="1_cate3_clk_cnt_1_day" />
+            <feature name="1_cate3_clk_cnt_3_day" />
+            <feature name="1_cate3_clk_cnt_7_day" />
+            <feature name="1_cate3_conv_cnt_1_day" />
+            <feature name="1_cate3_conv_cnt_3_day" />
+            <feature name="1_cate3_conv_cnt_7_day" />
+            <feature name="1_cate3_ctr_1_day" />
+            <feature name="1_cate3_ctr_3_day" />
+            <feature name="1_cate3_ctr_7_day" />
+            <feature name="1_cate3_cvr_1_day" />
+            <feature name="1_cate3_cvr_3_day" />
+            <feature name="1_cate3_cvr_7_day" />
+            <feature name="1_cate3_imp_slope_a_3_day" />
+            <feature name="1_cate3_imp_slope_a_7_day" />
+            <feature name="1_cate3_imp_slope_a_30_day" />
+            <feature name="1_cate3_clk_slope_a_3_day" />
+            <feature name="1_cate3_clk_slope_a_7_day" />
+            <feature name="1_cate3_clk_slope_a_30_day" />
+            <feature name="1_cate3_conv_slope_a_3_day" />
+            <feature name="1_cate3_conv_slope_a_7_day" />
+            <feature name="1_cate3_conv_slope_a_30_day" />
+            <feature name="1_cate3_imp_slope_b_3_day" />
+            <feature name="1_cate3_imp_slope_b_7_day" />
+            <feature name="1_cate3_imp_slope_b_30_day" />
+            <feature name="1_cate3_clk_slope_b_3_day" />
+            <feature name="1_cate3_clk_slope_b_7_day" />
+            <feature name="1_cate3_clk_slope_b_30_day" />
+            <feature name="1_cate3_conv_slope_b_3_day" />
+            <feature name="1_cate3_conv_slope_b_7_day" />
+            <feature name="1_cate3_conv_slope_b_30_day" />
+            <feature name="1_cate3_imp_cate1_tgi_3_day" />
+            <feature name="1_cate3_imp_cate1_tgi_7_day" />
+            <feature name="1_cate3_imp_cate1_tgi_30_day" />
+            <feature name="1_cate3_clk_cate1_tgi_3_day" />
+            <feature name="1_cate3_clk_cate1_tgi_7_day" />
+            <feature name="1_cate3_clk_cate1_tgi_30_day" />
+            <feature name="1_cate3_conv_cate1_tgi_3_day" />
+            <feature name="1_cate3_conv_cate1_tgi_7_day" />
+            <feature name="1_cate3_conv_cate1_tgi_30_day" />
+            <feature name="1_cate3_imp_cate2_tgi_3_day" />
+            <feature name="1_cate3_imp_cate2_tgi_7_day" />
+            <feature name="1_cate3_imp_cate2_tgi_30_day" />
+            <feature name="1_cate3_clk_cate2_tgi_3_day" />
+            <feature name="1_cate3_clk_cate2_tgi_7_day" />
+            <feature name="1_cate3_clk_cate2_tgi_30_day" />
+            <feature name="1_cate3_conv_cate2_tgi_3_day" />
+            <feature name="1_cate3_conv_cate2_tgi_7_day" />
+            <feature name="1_cate3_conv_cate2_tgi_30_day" />
+            <feature name="1_cate4_imp_cnt_1_day" />
+            <feature name="1_cate4_imp_cnt_3_day" />
+            <feature name="1_cate4_imp_cnt_7_day" />
+            <feature name="1_cate4_clk_cnt_1_day" />
+            <feature name="1_cate4_clk_cnt_3_day" />
+            <feature name="1_cate4_clk_cnt_7_day" />
+            <feature name="1_cate4_conv_cnt_1_day" />
+            <feature name="1_cate4_conv_cnt_3_day" />
+            <feature name="1_cate4_conv_cnt_7_day" />
+            <feature name="1_cate4_ctr_1_day" />
+            <feature name="1_cate4_ctr_3_day" />
+            <feature name="1_cate4_ctr_7_day" />
+            <feature name="1_cate4_cvr_1_day" />
+            <feature name="1_cate4_cvr_3_day" />
+            <feature name="1_cate4_cvr_7_day" />
+            <feature name="1_cate4_imp_slope_a_3_day" />
+            <feature name="1_cate4_imp_slope_a_7_day" />
+            <feature name="1_cate4_imp_slope_a_30_day" />
+            <feature name="1_cate4_clk_slope_a_3_day" />
+            <feature name="1_cate4_clk_slope_a_7_day" />
+            <feature name="1_cate4_clk_slope_a_30_day" />
+            <feature name="1_cate4_conv_slope_a_3_day" />
+            <feature name="1_cate4_conv_slope_a_7_day" />
+            <feature name="1_cate4_conv_slope_a_30_day" />
+            <feature name="1_cate4_imp_slope_b_3_day" />
+            <feature name="1_cate4_imp_slope_b_7_day" />
+            <feature name="1_cate4_imp_slope_b_30_day" />
+            <feature name="1_cate4_clk_slope_b_3_day" />
+            <feature name="1_cate4_clk_slope_b_7_day" />
+            <feature name="1_cate4_clk_slope_b_30_day" />
+            <feature name="1_cate4_conv_slope_b_3_day" />
+            <feature name="1_cate4_conv_slope_b_7_day" />
+            <feature name="1_cate4_conv_slope_b_30_day" />
+            <feature name="1_cate4_imp_cate1_tgi_3_day" />
+            <feature name="1_cate4_imp_cate1_tgi_7_day" />
+            <feature name="1_cate4_imp_cate1_tgi_30_day" />
+            <feature name="1_cate4_clk_cate1_tgi_3_day" />
+            <feature name="1_cate4_clk_cate1_tgi_7_day" />
+            <feature name="1_cate4_clk_cate1_tgi_30_day" />
+            <feature name="1_cate4_conv_cate1_tgi_3_day" />
+            <feature name="1_cate4_conv_cate1_tgi_7_day" />
+            <feature name="1_cate4_conv_cate1_tgi_30_day" />
+            <feature name="1_cate4_imp_cate2_tgi_3_day" />
+            <feature name="1_cate4_imp_cate2_tgi_7_day" />
+            <feature name="1_cate4_imp_cate2_tgi_30_day" />
+            <feature name="1_cate4_clk_cate2_tgi_3_day" />
+            <feature name="1_cate4_clk_cate2_tgi_7_day" />
+            <feature name="1_cate4_clk_cate2_tgi_30_day" />
+            <feature name="1_cate4_conv_cate2_tgi_3_day" />
+            <feature name="1_cate4_conv_cate2_tgi_7_day" />
+            <feature name="1_cate4_conv_cate2_tgi_30_day" />
+            <feature name="1_cate3_read_d7_slope_a" />
+            <feature name="1_cate3_read_d7_slope_a_row" />
+            <feature name="1_cate3_read_d3_row" />
+            <feature name="1_cate3_read_d15_slope_a" />
+            <feature name="1_cate3_read_d15_slope_a_row" />
+            <feature name="1_cate3_read_d7_row" />
+            <feature name="1_cate3_read_d30_slope_a" />
+            <feature name="1_cate3_read_d30_slope_a_row" />
+            <feature name="1_cate3_read_d30_row" />
+            <feature name="1_cate4_read_d7_slope_a" />
+            <feature name="1_cate4_read_d7_slope_a_row" />
+            <feature name="1_cate4_read_d3_row" />
+            <feature name="1_cate4_read_d15_slope_a" />
+            <feature name="1_cate4_read_d15_slope_a_row" />
+            <feature name="1_cate4_read_d7_row" />
+            <feature name="1_cate4_read_d30_slope_a" />
+            <feature name="1_cate4_read_d30_slope_a_row" />
+            <feature name="1_cate4_read_d30_row" />
+            <feature name="1_product_read_d7_slope_a" />
+            <feature name="1_product_read_d7_slope_a_row" />
+            <feature name="1_product_read_d3_row" />
+            <feature name="1_product_read_d15_slope_a" />
+            <feature name="1_product_read_d15_slope_a_row" />
+            <feature name="1_product_read_d7_row" />
+            <feature name="1_product_read_d30_slope_a" />
+            <feature name="1_product_read_d30_slope_a_row" />
+            <feature name="1_product_read_d30_row" />
+            <feature name="1_brand_read_d7_slope_a" />
+            <feature name="1_brand_read_d7_slope_a_row" />
+            <feature name="1_brand_read_d3_row" />
+            <feature name="1_brand_read_d15_slope_a" />
+            <feature name="1_brand_read_d15_slope_a_row" />
+            <feature name="1_brand_read_d7_row" />
+            <feature name="1_brand_read_d30_slope_a" />
+            <feature name="1_brand_read_d30_slope_a_row" />
+            <feature name="1_brand_read_d30_row" />
+            <feature name="1_cate3_search_d7_slope_a" />
+            <feature name="1_cate3_search_d7_slope_a_row" />
+            <feature name="1_cate3_search_d3_row" />
+            <feature name="1_cate3_search_d15_slope_a" />
+            <feature name="1_cate3_search_d15_slope_a_row" />
+            <feature name="1_cate3_search_d7_row" />
+            <feature name="1_cate3_search_d30_slope_a" />
+            <feature name="1_cate3_search_d30_slope_a_row" />
+            <feature name="1_cate3_search_d30_row" />
+            <feature name="1_cate4_search_d7_slope_a" />
+            <feature name="1_cate4_search_d7_slope_a_row" />
+            <feature name="1_cate4_search_d3_row" />
+            <feature name="1_cate4_search_d15_slope_a" />
+            <feature name="1_cate4_search_d15_slope_a_row" />
+            <feature name="1_cate4_search_d7_row" />
+            <feature name="1_cate4_search_d30_slope_a" />
+            <feature name="1_cate4_search_d30_slope_a_row" />
+            <feature name="1_cate4_search_d30_row" />
+            <feature name="1_product_search_d7_slope_a" />
+            <feature name="1_product_search_d7_slope_a_row" />
+            <feature name="1_product_search_d3_row" />
+            <feature name="1_product_search_d15_slope_a" />
+            <feature name="1_product_search_d15_slope_a_row" />
+            <feature name="1_product_search_d7_row" />
+            <feature name="1_product_search_d30_slope_a" />
+            <feature name="1_product_search_d30_slope_a_row" />
+            <feature name="1_product_search_d30_row" />
+            <feature name="1_brand_search_d7_slope_a" />
+            <feature name="1_brand_search_d7_slope_a_row" />
+            <feature name="1_brand_search_d3_row" />
+            <feature name="1_brand_search_d15_slope_a" />
+            <feature name="1_brand_search_d15_slope_a_row" />
+            <feature name="1_brand_search_d7_row" />
+            <feature name="1_brand_search_d30_slope_a" />
+            <feature name="1_brand_search_d30_slope_a_row" />
+            <feature name="1_brand_search_d30_row" />
+            <feature  name="1_cate3_month_sales_row"  />
+            <feature  name="1_cate3_week_sales_row"  />
+            <feature  name="1_cate4_month_sales_row"  />
+            <feature  name="1_cate4_week_sales_row"  />
+            <feature  name="1_brand_month_sales_row"  />
+            <feature  name="1_brand_week_sales_row"  />
+            <feature  name="1_product_month_sales_row"  />
+            <feature  name="1_product_week_sales_row"  />
+        </features>
+        <features  name="comb_features"> <!--特征-->
+            <!--<feature  name="1_机型厚度(uin)" dependencies="1_2_2_price,1_1_1_device_model"/>-->
+        </features>
+    </gen_feature>
+</feature_generator>
